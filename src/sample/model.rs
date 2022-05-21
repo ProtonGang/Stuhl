@@ -1,6 +1,10 @@
+#![allow(proc_macro_derive_resolution_fallback)]
+
+use crate::schema::comments;
+
 #[derive(Queryable, AsChangeset, Serialize, Deserialize, Debug)]
 #[table_name = "comments"]
-pub struct Post {
+pub struct Comment {
     pub id: i32,
     pub title: String,
     pub body: String,
