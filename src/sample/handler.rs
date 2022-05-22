@@ -19,7 +19,7 @@ pub fn all_comments(connection: DbConn) -> Result<Json<Vec<Comment>>, Status> {
 
 #[post("/", format ="application/json", data = "<new_comment>")]
 pub fn create_comment(new_comment: Json<NewComment>, connection: DbConn) ->  Result<status::Created<Json<Comment>>, Status> {
-    println!("here 0 {}",&new_comment.title);
+    // println!("here 0 {}",&new_comment.title);
     sample::repository::create_comment(new_comment.into_inner(), &connection)
         .map(|comment| comment_created(comment))
         .map_err(|error| error_status(error))

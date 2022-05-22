@@ -1,18 +1,20 @@
 #![allow(proc_macro_derive_resolution_fallback)]
 
+use chrono::NaiveDateTime as Time;
 use crate::schema::comments;
 
-#[derive(Queryable, AsChangeset, Serialize, Deserialize, Debug)]
+#[derive(Queryable, Serialize, AsChangeset, Deserialize, Debug)]
 #[table_name = "comments"]
 pub struct Comment {
     pub id: i32,
-    pub title: String,
     pub body: String,
-    pub published: bool,
+    pub user_id: i32,
+    pub approved: bool,
+    pub date: Time,
 }
 #[derive(Insertable, Serialize, Deserialize)]
 #[table_name="comments"]
 pub struct NewComment {
-    pub title: String,
+    pub user_id: i32,
     pub body: String,
 }
